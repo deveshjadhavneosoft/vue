@@ -1,28 +1,54 @@
 <template>
+  
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <!-- <h2> {{title}} </h2>
+    <p ref="ele"> {{counter}} </p> -->
+    <Nav />
+    <section class="container">
+        <router-view></router-view>
+        <router-view name="a"></router-view>
+        <router-view name="b"></router-view>
+    </section>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 
+import Nav from './components/Nav.vue'
 export default {
   name: 'App',
-  components: {
-    HelloWorld
+  components :{
+    Nav
+  },
+  data(){
+    return {title:"xyz",counter:0}
+  },
+  // beforeCreate(){
+  //   alert('Before create call '+this.title);
+  // }
+  created(){
+     setInterval(()=>{
+         this.counter++
+     },5000)
+  },
+  // beforeMount(){
+  //   alert("Before Mount")
+  // }
+  mounted(){
+    this.title="SUmit Joshi";
+    console.log(this.counter)
+  },
+  updated(){
+     console.log("Updated is called")
+     //console.log(this.counter)
+  },
+  destroyed(){
+    this.$destroy();
+    console.log(this)
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>
